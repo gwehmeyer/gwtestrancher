@@ -1,0 +1,23 @@
+stages:
+- name: Publish - Landing
+  when:
+    branch: main
+  steps:
+  - publishImageConfig:
+      dockerfilePath: ./Dockerfile
+      buildContext: .
+      tag: gwtestrancher:${CICD_EXECUTION_SEQUENCE}
+      pushRemote: true
+      registry: git.bluechipdigital.com
+- name: Deployment - Landing
+  when:
+    branch: main
+  steps:
+    - applyYamlConfig:
+        path: ./deployment.yaml
+- name: Ingress - Landing
+  when:
+    branch: main
+  steps:
+    - applyYamlConfig:
+        path: ./ingress.yaml

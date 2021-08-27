@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: gwtestrancher
+spec:
+  selector:
+    matchLabels:
+      app: gwtestrancher
+  template:
+    metadata:
+      labels:
+        app: gwtestrancher
+    spec:
+      imagePullSecrets:
+        - name: pipeline-docker-registry
+      containers:
+      - name: gwtestrancher
+        image: git.bluechipdigital.com/gwtestrancher:${CICD_EXECUTION_SEQUENCE}
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+        ports:
+        - containerPort: 80
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: gwtestrancher-svc
+spec:
+  selector:
+    app: gwtestrancher
+  ports:
+  - port: 80
+    targetPort: 80

@@ -35,7 +35,6 @@ metadata:
   name: nginx-ingress
   annotations:
     kubernetes.io/ingress.class: traefik
-    rancher.io/globalDNS.hostname: test.gwdev.co
 spec:
   rules:
   - http:
@@ -51,6 +50,8 @@ kind: Service
 metadata:
   name: traefik
   namespace: kube-system
+  annotations:
+    cloudflare-test-external-dns/hostname: test.gwdev.co
 spec:
   type: NodePort
   ports:

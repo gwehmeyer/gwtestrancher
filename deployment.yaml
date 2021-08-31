@@ -37,7 +37,8 @@ metadata:
     kubernetes.io/ingress.class: traefik
 spec:
   rules:
-  - http:
+  - host:test.gwdev.co
+    http:
       paths:
       - path: /
         pathType: Prefix

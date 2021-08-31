@@ -51,7 +51,7 @@ metadata:
   name: traefik
   namespace: kube-system
   annotations:
-    cloudflare-test-external-dns/hostname: test.gwdev.co
+    external-dns.alpha.kubernetes.io/hostname: test.gwdev.co
 spec:
   type: NodePort
   ports:

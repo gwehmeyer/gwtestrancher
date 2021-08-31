@@ -35,6 +35,7 @@ metadata:
   name: nginx-ingress
   annotations:
     kubernetes.io/ingress.class: traefik
+    rancher.io/globalDNS.hostname: test.gwdev.co
 spec:
   rules:
   - http:
